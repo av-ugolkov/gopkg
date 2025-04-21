@@ -1,8 +1,10 @@
 package safe
 
-import "github.com/av-ugolkov/gopkg/logger"
+import (
+	"github.com/av-ugolkov/gopkg/logger"
+)
 
-func SafeGo(fn func()) {
+func Go(fn func()) {
 	go func() {
 		defer func() {
 			if err := recover(); err != nil {
