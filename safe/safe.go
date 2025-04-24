@@ -69,6 +69,9 @@ func GoCh[T any](ctx context.Context, fn func(ctx context.Context) (T, error)) (
 
 	go func() {
 		defer func() {
+			close(dataCh)
+			close(errCh)
+
 			if err := recover(); err != nil {
 				logger.Errorf("safe.SafeGo: %v", err)
 			}
